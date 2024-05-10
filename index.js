@@ -7,7 +7,9 @@ const mongoose = require('mongoose');
 // API routes
 const invitationsRoute = require('./Routes/invitationsRoute');
 
+const assessmentRoute=require('./Routes/assessmentRoutes')
 
+const responseRoute=require('./Routes/responseRoutes')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +18,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use(invitationsRoute);
+app.use(assessmentRoute)
 
 
 
