@@ -9,6 +9,6 @@ const AssessmentSchema = new Schema({
     duration: { type: Number },
     candidate: { type: Schema.Types.ObjectId, ref: 'Candidate' },
     responses: [{ type: Schema.Types.ObjectId, ref: 'Response' }],
-});
+},{timestamps: true});
 
 module.exports = mongoose.model('Assessment', AssessmentSchema);

@@ -15,6 +15,6 @@ const CandidateSchema = new Schema({
     links: [{ type: String }],
     tests_taken: [{ type: Schema.Types.ObjectId, ref: 'Assessment' }],
     invitationStatus: { type: String, default: 'pending' } // Default status is 'pending'
-});
+},{timestamps: true});
 
 module.exports = mongoose.model('Candidate', CandidateSchema);

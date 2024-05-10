@@ -7,6 +7,6 @@ const responseController = require('../controller/responseController');
 router.post('/createresponse', responseController.createResponse);
 
 // Get responses for a specific assessment and candidate
-router.get('/:assessmentId/:candidateId', responseController.getResponses);
+router.get('/:assessmentId/:candidateId', responseController.getResponse);
 
 module.exports = router;

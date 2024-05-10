@@ -19,6 +19,7 @@ app.use(express.json());
 
 app.use(invitationsRoute);
 app.use(assessmentRoute)
+app.use(responseRoute)
 
 
 

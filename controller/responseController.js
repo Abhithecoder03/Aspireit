@@ -1,29 +1,47 @@
 // controllers/responseController.js
 const Response = require('../models/candidateResponse');
+const Assessment = require('../models/assessment');
 
 exports.createResponse = async (req, res) => {
   try {
-    const { totalQuestions, score, timeTaken, assessmentId, candidateId } = req.body;
+    const { responses, assessmentId, candidateId } = req.body;
+
+    // Find the assessment by ID to get the questions
+    const assessment = await Assessment.findById(assessmentId).populate('questions');
+    if (!assessment) {
+      return res.status(404).json({ message: 'Assessment not found' });
+    }
+
+    // Calculate the score based on the responses
+    let score = 0;
+    responses.forEach((response, index) => {
+      // Get the accepted keywords for the current question
+      const acceptedKeywords = assessment.questions[index].accepted_keywords;
+
+      // Check if any of the accepted keywords match the candidate's response
+      if (acceptedKeywords.some(keyword => response.includes(keyword))) {
+        score += 1;
+      }
+    });
 
     // Create a new response
-    const response = new Response({
-      total_questions: totalQuestions,
-      score: score,
-      time_taken: timeTaken,
+    const newResponse = new Response({
+      responses,
+      score,
       assessment: assessmentId,
       candidate: candidateId,
     });
 
     // Save the response
-    await response.save();
+    await newResponse.save();
 
-    res.status(201).json({ message: 'Response created successfully', response });
+    res.status(201).json({ message: 'Response created successfully', response: newResponse });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-exports.getResponses = async (req, res) => {
+exports.getResponse = async (req, res) => {
   try {
     const { assessmentId, candidateId } = req.params;
 

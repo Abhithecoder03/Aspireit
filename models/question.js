@@ -7,6 +7,6 @@ const QuestionSchema = new Schema({
     difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'] },
     topic: { type: String },
     assessment: { type: Schema.Types.ObjectId, ref: 'Assessment' },
-});
+},{timestamps: true});
 
 module.exports = mongoose.model('Question', QuestionSchema);
