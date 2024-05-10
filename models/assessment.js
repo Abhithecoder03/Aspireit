@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const AssessmentSchema = new Schema({
+const assessmentSchema = new mongoose.Schema({
    
     questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
     domain: { type: String, enum: ['IT', 'Finance', 'Healthcare', 'Education', 'Other'] },
@@ -11,4 +11,4 @@ const AssessmentSchema = new Schema({
     responses: [{ type: Schema.Types.ObjectId, ref: 'Response' }],
 },{timestamps: true});
 
-module.exports = mongoose.model('Assessment', AssessmentSchema);
+export default mongoose.model('Assessment', assessmentSchema);

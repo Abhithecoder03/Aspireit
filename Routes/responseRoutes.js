@@ -1,12 +1,12 @@
 // routes/responseRoutes.js
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const responseController = require('../controller/responseController');
+import { createResponse, getResponse} from '../controller/responseController.js';
 
 // Create a new response
-router.post('/createresponse', responseController.createResponse);
+router.post('/createresponse', createResponse);
 
 // Get responses for a specific assessment and candidate
-router.get('/:assessmentId/:candidateId', responseController.getResponse);
+router.get('/:assessmentId/:candidateId', getResponse);
 
-module.exports = router;
+export default router;

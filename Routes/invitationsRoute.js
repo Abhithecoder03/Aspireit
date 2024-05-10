@@ -1,10 +1,9 @@
-// routes/invitations.js
+import express from 'express';
+import { sendInvitation, getPendingInvitations } from '../controller/invitationController.js';
 
-const express = require('express');
 const router = express.Router();
-const invitationsController = require('../controller/invitationController')
 
-router.post('/invitations', invitationsController.sendInvitation);
-router.get('/invitations', invitationsController. getPendingInvitations);
+router.post('/invitations', sendInvitation);
+router.get('/invitations', getPendingInvitations);
 
-module.exports = router;
+export default router;

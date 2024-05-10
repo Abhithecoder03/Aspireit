@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
 const QuestionSchema = new Schema({
-    question: { type: String },
-    accepted_keywords: [{ type: String }],
-    difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'] },
-    topic: { type: String },
-    assessment: { type: Schema.Types.ObjectId, ref: 'Assessment' },
-},{timestamps: true});
+  question: { type: String },
+  accepted_keywords: [{ type: String }],
+  difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'] },
+  topic: { type: String },
+  assessment: { type: Schema.Types.ObjectId, ref: 'Assessment' },
+}, { timestamps: true });
 
-module.exports = mongoose.model('Question', QuestionSchema);
+export default mongoose.model('Question', QuestionSchema);

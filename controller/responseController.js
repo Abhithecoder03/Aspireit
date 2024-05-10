@@ -1,8 +1,9 @@
 // controllers/responseController.js
-const Response = require('../models/candidateResponse');
-const Assessment = require('../models/assessment');
 
-exports.createResponse = async (req, res) => {
+import Assessment from '../models/assessment.js';
+import Response from '../models/candidateResponse.js';
+
+export const createResponse = async (req, res) => {
   try {
     const { responses, assessmentId, candidateId } = req.body;
 
@@ -41,7 +42,7 @@ exports.createResponse = async (req, res) => {
   }
 };
 
-exports.getResponse = async (req, res) => {
+export const getResponse = async (req, res) => {
   try {
     const { assessmentId, candidateId } = req.params;
 

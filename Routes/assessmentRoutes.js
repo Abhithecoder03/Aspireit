@@ -1,14 +1,14 @@
-// routes/assessmentRoutes.js
-const express = require('express');
+import express from 'express';
+import { createQuestion, getAssessment, createAssessment } from '../controller/assessmentController.js';
+
 const router = express.Router();
-const assessmentController = require('../controller/assessmentController');
 
 // Create a new verbal assessment question
-router.post('/:id/questions', assessmentController.createQuestion);
+router.post('/:id/questions', createQuestion);
 
 // Retrieve details of a specific assessment
-router.get('/:id', assessmentController.getAssessment);
+router.get('/:id', getAssessment);
 
-router.post('/create', assessmentController.createAssessment);
+router.post('/create', createAssessment);
 
-module.exports = router;
+export default router;

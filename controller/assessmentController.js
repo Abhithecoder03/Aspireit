@@ -1,8 +1,8 @@
 // controllers/assessmentController.js
-const Assessment = require('../models/assessment');
-const Question = require('../models/question');
+import Assessment from '../models/assessment.js';
+import Question from '../models/question.js';
 
-exports.createQuestion = async (req, res) => {
+export const createQuestion = async (req, res) => {
   try {
     const assessmentId = req.params.id;
     const { question, acceptedKeywords, difficulty, topic } = req.body;
@@ -33,7 +33,7 @@ exports.createQuestion = async (req, res) => {
   }
 };
 
-exports.getAssessment = async (req, res) => {
+export const getAssessment = async (req, res) =>  {
   try {
     const assessmentId = req.params.id;
 
@@ -49,7 +49,7 @@ exports.getAssessment = async (req, res) => {
   }
 };
 //create assessment
-exports.createAssessment = async (req, res) => {
+export const createAssessment = async (req, res) =>{
     try {
       const { domain, attempts, duration, candidateId } = req.body;
   
